@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: theme('colors.cream');
+    color: #2d2521;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .dark body {
+    background-color: #140e0c;
+    color: #f7ede3;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-semibold transition-all duration-150 cursor-pointer;
+  }
+  .btn:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+  }
+  .btn-primary {
+    @apply bg-coffee text-white;
+  }
+  .dark .btn-primary {
+    background-color: #c89b5b !important;
+    color: #170f0b !important;
+  }
+  .dark .btn-primary:hover {
+    background-color: #d6ab6e !important;
+  }
+  .btn-soft {
+    @apply bg-[#efe5d9] text-coffee;
+  }
+  .dark .btn-soft {
+    background-color: #281d18 !important;
+    color: #e8dbcf !important;
+    border: 1px solid #3d2d25 !important;
+  }
+  .dark .btn-soft:hover {
+    background-color: #352620 !important;
+  }
+  .btn-danger {
+    @apply bg-[#f9e8e6] text-red;
+  }
+  .dark .btn-danger {
+    background-color: #381a1a !important;
+    color: #ff9191 !important;
+    border: 1px solid #572626 !important;
+  }
+  .btn-green {
+    @apply bg-green text-white;
+  }
+  
+  .input-field {
+    @apply w-full border border-line rounded-lg px-3 py-2 bg-white text-[#2d2521] outline-none min-w-0 transition-shadow;
+  }
+  .dark .input-field {
+    background-color: #221814 !important;
+    border-color: #3d2c25 !important;
+    color: #f7ede3 !important;
+  }
+  .input-field:focus {
+    @apply border-gold ring-2 ring-[#c89b5b33];
+  }
+
+  .card {
+    @apply bg-paper border border-[#eee5da] rounded-2xl p-5 shadow-[0_12px_32px_rgba(47,30,22,0.08)];
+  }
+  .dark .card {
+    background-color: #1b1310 !important;
+    border-color: #33231c !important;
+    color: #f7ede3 !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
+  }
+}
+
+/* Dark mode specific enhancements */
+.dark .bg-cream {
+  background-color: #140e0c !important;
+}
+.dark aside {
+  background-color: #100a08 !important;
+  border-right: 1px solid #281a14 !important;
+}
+.dark main {
+  background-color: #140e0c !important;
+}
+.dark .text-muted {
+  color: #a39387 !important;
+}
+.dark table th {
+  border-color: #2e2019 !important;
+  color: #a39387 !important;
+}
+.dark table td {
+  border-color: #281a14 !important;
+}
+.dark .border-line {
+  border-color: #33231c !important;
+}
+.dark .bg-white {
+  background-color: #201713 !important;
+}
+
+/* -------------------------------------------------------------------------
+   THERMAL RECEIPT PRINT MEDIA
+   Ensures ONLY and EXCLUSIVELY the receipt is printed, with zero background,
+   zero headers/footers, zero other UI elements on the sheet!
+   ------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: 72mm auto;
+    margin: 0mm !important;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    width: 72mm !important;
+  }
+  .print\:hidden,
+  aside,
+  header,
+  main {
+    display: none !important;
+  }
+  #thermal-receipt {
+    display: block !important;
+    visibility: visible !important;
+    width: 68mm !important;
+    margin: 0 auto !important;
+    padding: 3mm 2mm !important;
+    font-family: monospace !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+  #thermal-receipt * {
+    color: #000000 !important;
+    background: transparent !important;
+  }
+}
