@@ -1111,6 +1111,7 @@ function CustomersSection({ customers }) {
                 <button onClick={() => requestAction('delete', c)} className="btn btn-danger text-xs py-1 px-2.5">Delete</button>
               </td>
             </tr>
+          ))}
         </tbody>
       </table>
     </div>
